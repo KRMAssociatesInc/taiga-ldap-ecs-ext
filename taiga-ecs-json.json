@@ -1,0 +1,803 @@
+{
+    "ipcMode": null,
+    "executionRoleArn": null,
+    "containerDefinitions": [
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 336,
+        "environment": [
+          {
+            "name": "DEFAULT_FROM_EMAIL",
+            "value": "no-reply@example.com"
+          },
+          {
+            "name": "EMAIL_BACKEND",
+            "value": "django.core.mail.backends.smtp.EmailBackend"
+          },
+          {
+            "name": "EMAIL_HOST",
+            "value": "smtp.host.example.com"
+          },
+          {
+            "name": "EMAIL_HOST_PASSWORD",
+            "value": "password"
+          },
+          {
+            "name": "EMAIL_HOST_USER",
+            "value": "user"
+          },
+          {
+            "name": "EMAIL_PORT",
+            "value": "587"
+          },
+          {
+            "name": "EMAIL_USE_TLS",
+            "value": "True"
+          },
+          {
+            "name": "ENABLE_LDAP",
+            "value": "True"
+          },
+          {
+            "name": "ENABLE_TELEMETRY",
+            "value": "True"
+          },
+          {
+            "name": "LDAP_BIND_DN",
+            "value": "CN=user,OU=EXAMPLE,DC=example,DC=com"
+          },
+          {
+            "name": "LDAP_BIND_PASSWORD",
+            "value": "password"
+          },
+          {
+            "name": "LDAP_EMAIL_ATTRIBUTE",
+            "value": "mail"
+          },
+          {
+            "name": "LDAP_FULL_NAME_ATTRIBUTE",
+            "value": "cn"
+          },
+          {
+            "name": "LDAP_PORT",
+            "value": "389"
+          },
+          {
+            "name": "LDAP_SEARCH_BASE",
+            "value": "OU=EXAMPLE,DC=example,DC=com"
+          },
+          {
+            "name": "LDAP_SERVER",
+            "value": "example.com"
+          },
+          {
+            "name": "LDAP_START_TLS",
+            "value": "False"
+          },
+          {
+            "name": "LDAP_USERNAME_ATTRIBUTE",
+            "value": "sAMAccountName"
+          },
+          {
+            "name": "POSTGRES_DB",
+            "value": "taiga"
+          },
+          {
+            "name": "POSTGRES_HOST",
+            "value": "taiga-db"
+          },
+          {
+            "name": "POSTGRES_PASSWORD",
+            "value": "taiga"
+          },
+          {
+            "name": "POSTGRES_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_PASS",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "TAIGA_SECRET_KEY",
+            "value": "taiga-back-secret-key"
+          },
+          {
+            "name": "TAIGA_SITES_DOMAIN",
+            "value": "localhost:9000"
+          },
+          {
+            "name": "TAIGA_SITES_SCHEME",
+            "value": "http"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/taiga-back/static",
+            "sourceVolume": "taiga-static-data"
+          },
+          {
+            "readOnly": null,
+            "containerPath": "/taiga-back/media",
+            "sourceVolume": "taiga-static-data"
+          }
+        ],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 608,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "REPLACE ME | Location of LDAP back image",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-events-rabbitmq",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-async-rabbitmq",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-events-rabbitmq:taiga-events-rabbitmq",
+          "taiga-async-rabbitmq:taiga-async-rabbitmq"
+        ],
+        "hostname": "taiga-back",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-back"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": [
+          "/taiga-back/docker/async_entrypoint.sh"
+        ],
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 336,
+        "environment": [
+          {
+            "name": "DEFAULT_FROM_EMAIL",
+            "value": "no-reply@example.com"
+          },
+          {
+            "name": "EMAIL_BACKEND",
+            "value": "django.core.mail.backends.smtp.EmailBackend"
+          },
+          {
+            "name": "EMAIL_HOST",
+            "value": "smtp.host.example.com"
+          },
+          {
+            "name": "EMAIL_HOST_PASSWORD",
+            "value": "password"
+          },
+          {
+            "name": "EMAIL_HOST_USER",
+            "value": "user"
+          },
+          {
+            "name": "EMAIL_PORT",
+            "value": "587"
+          },
+          {
+            "name": "EMAIL_USE_SSL",
+            "value": "True"
+          },
+          {
+            "name": "EMAIL_USE_TLS",
+            "value": "True"
+          },
+          {
+            "name": "ENABLE_TELEMETRY",
+            "value": "True"
+          },
+          {
+            "name": "POSTGRES_DB",
+            "value": "taiga"
+          },
+          {
+            "name": "POSTGRES_HOST",
+            "value": "taiga-db"
+          },
+          {
+            "name": "POSTGRES_PASSWORD",
+            "value": "taiga"
+          },
+          {
+            "name": "POSTGRES_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_PASS",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "TAIGA_SECRET_KEY",
+            "value": "taiga-back-secret-key"
+          },
+          {
+            "name": "TAIGA_SITES_DOMAIN",
+            "value": "localhost:9000"
+          },
+          {
+            "name": "TAIGA_SITES_SCHEME",
+            "value": "http"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/taiga-back/static",
+            "sourceVolume": "taiga-static-data"
+          },
+          {
+            "readOnly": null,
+            "containerPath": "/taiga-back/media",
+            "sourceVolume": "taiga-media-data"
+          }
+        ],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 608,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "taigaio/taiga-back:latest",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-back",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-async-rabbitmq",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-back:taiga-back",
+          "taiga-async-rabbitmq:taiga-async-rabbitmq",
+          "taiga-events-rabbitmq:taiga-events-rabbitmq"
+        ],
+        "hostname": "taiga-async",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-async"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [
+          {
+            "name": "RABBITMQ_DEFAULT_PASS",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_DEFAULT_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_DEFAULT_VHOST",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_ERLANG_COOKIE",
+            "value": "secret-arlang-cookie"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/var/lib/rabbitmq",
+            "sourceVolume": "taiga-async-rabbitmq-data"
+          }
+        ],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "rabbitmq:3-management-alpine",
+        "startTimeout": null,
+        "firelensConfiguration": null,
+        "dependsOn": null,
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-events-rabbitmq:taiga-events-rabbitmq"
+        ],
+        "hostname": "taiga-async-rabbitmq",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-async-rabbitmq"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [
+          {
+            "name": "TAIGA_LOGIN_FORM_TYPE",
+            "value": "ldap"
+          },
+          {
+            "name": "TAIGA_URL",
+            "value": "https://localhost:9000"
+          },
+          {
+            "name": "TAIGA_WEBSOCKETS_URL",
+            "value": "ws://localhost:9000"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "REPLACE ME | Taiga LDAP front image",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-back",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-events",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-back:taiga-back",
+          "taiga-events:taiga-events"
+        ],
+        "hostname": "taiga-front",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-front"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [
+          {
+            "name": "RABBITMQ_PASS",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "TAIGA_SECRET_KEY",
+            "value": "taiga-back-secret-key"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "taigaio/taiga-events:latest",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-events-rabbitmq",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-back:taiga-back",
+          "taiga-events-rabbitmq:taiga-events-rabbitmq",
+          "taiga-async-rabbitmq:taiga-async-rabbitmq"
+        ],
+        "hostname": "taiga-events",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-events"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [
+          {
+            "name": "RABBIT_ERLANG_COOKIE",
+            "value": "secret-arlang-cookie"
+          },
+          {
+            "name": "RABBITMQ_DEFAULT_PASS",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_DEFAULT_USER",
+            "value": "taiga"
+          },
+          {
+            "name": "RABBITMQ_DEFAULT_VHOST",
+            "value": "taiga"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/var/lib/rabbitmq",
+            "sourceVolume": "tagia-events-rabbitmq-data"
+          }
+        ],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "rabbitmq:3-management-alpine",
+        "startTimeout": null,
+        "firelensConfiguration": null,
+        "dependsOn": null,
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [],
+        "hostname": null,
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-events-rabbitmq"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [
+          {
+            "name": "MAX_AGE",
+            "value": "360"
+          },
+          {
+            "name": "SECRET_KEY",
+            "value": "taiga-back-secret-key"
+          }
+        ],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "taigaio/taiga-protected:latest",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-events",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-async",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-back:taiga-back",
+          "taiga-events:taiga-events",
+          "taiga-async:taiga-async",
+          "taiga-front:taiga-front"
+        ],
+        "hostname": "taiga-protected",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-protected"
+      },
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "protocol": "tcp",
+            "containerPort": 80
+          }
+        ],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 225,
+        "environment": [],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [
+          {
+            "readOnly": null,
+            "containerPath": "/taiga/static",
+            "sourceVolume": "taiga-media-data"
+          },
+          {
+            "readOnly": null,
+            "containerPath": "/taiga/media",
+            "sourceVolume": "taiga-static-data"
+          },
+          {
+            "readOnly": null,
+            "containerPath": "/etc/nginx/conf.d/default.conf",
+            "sourceVolume": "taiga-nignx"
+          }
+        ],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": 414,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "nginx:1.19-alpine",
+        "startTimeout": 120,
+        "firelensConfiguration": null,
+        "dependsOn": [
+          {
+            "containerName": "taiga-front",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-back",
+            "condition": "START"
+          },
+          {
+            "containerName": "taiga-events",
+            "condition": "START"
+          }
+        ],
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "taiga-back:taiga-back",
+          "taiga-async:taiga-async",
+          "taiga-front:taiga-front",
+          "taiga-events:taiga-events",
+          "taiga-protected:taiga-protected"
+        ],
+        "hostname": "taiga-gateway",
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "taiga-gateway"
+      }
+    ],
+    "placementConstraints": [],
+    "memory": null,
+    "taskRoleArn": null,
+    "compatibilities": [
+      "EXTERNAL",
+      "EC2"
+    ],
+    "taskDefinitionArn": "arn:aws:ecs:region:accountid:task-definition/Taiga:1",
+    "family": "Taiga",
+    "requiresAttributes": [
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.container-ordering"
+      }
+    ],
+    "pidMode": null,
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "networkMode": "bridge",
+    "runtimePlatform": null,
+    "cpu": null,
+    "revision": 1,
+    "status": "ACTIVE",
+    "inferenceAccelerators": null,
+    "proxyConfiguration": null,
+    "volumes": [
+      {
+        "fsxWindowsFileServerVolumeConfiguration": null,
+        "efsVolumeConfiguration": null,
+        "name": "taiga-static-data",
+        "host": {
+          "sourcePath": "/path/to/local/taiga/taiga-static-data"
+        },
+        "dockerVolumeConfiguration": null
+      },
+      {
+        "fsxWindowsFileServerVolumeConfiguration": null,
+        "efsVolumeConfiguration": null,
+        "name": "taiga-media-data",
+        "host": {
+          "sourcePath": "/path/to/local/taiga/taiga-media-data"
+        },
+        "dockerVolumeConfiguration": null
+      },
+      {
+        "fsxWindowsFileServerVolumeConfiguration": null,
+        "efsVolumeConfiguration": null,
+        "name": "taiga-async-rabbitmq-data",
+        "host": {
+          "sourcePath": "/path/to/local/taiga/taiga-async-rabbitmq-data"
+        },
+        "dockerVolumeConfiguration": null
+      },
+      {
+        "fsxWindowsFileServerVolumeConfiguration": null,
+        "efsVolumeConfiguration": null,
+        "name": "tagia-events-rabbitmq-data",
+        "host": {
+          "sourcePath": "/path/to/local/taiga/taiga-events-rabbitmq-data"
+        },
+        "dockerVolumeConfiguration": null
+      },
+      {
+        "fsxWindowsFileServerVolumeConfiguration": null,
+        "efsVolumeConfiguration": null,
+        "name": "taiga-nignx",
+        "host": {
+          "sourcePath": "/path/to/local/taiga/taiga-gateway/taiga.conf"
+        },
+        "dockerVolumeConfiguration": null
+      }
+    ]
+  }
