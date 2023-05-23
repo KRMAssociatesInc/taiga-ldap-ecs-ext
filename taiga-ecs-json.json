@@ -483,7 +483,7 @@
         "dependsOn": [
           {
             "containerName": "taiga-events-rabbitmq",
-            "condition": "START"
+            "condition": "HEALTHY"
           }
         ],
         "disableNetworking": null,
@@ -555,7 +555,15 @@
         "dependsOn": null,
         "disableNetworking": null,
         "interactive": null,
-        "healthCheck": null,
+        "healthCheck": {
+          "command": [
+              "CMD-SHELL",
+              "rabbitmq-diagnostics check_port_connectivity"
+          ],
+          "interval": 10,
+          "timeout": 10,
+          "retries": 5
+        },
         "essential": true,
         "links": [],
         "hostname": null,
